@@ -1,0 +1,10 @@
+package kontor:contract;
+
+world contract {
+    include kontor:built-in/built-in;
+    use kontor:built-in/context.{view-context, proc-context};
+
+    export init: func(ctx: borrow<proc-context>);
+
+    export hello-world: func(ctx: borrow<view-context>) -> string;
+}

@@ -1,0 +1,9 @@
+[workspace]
+members = ["contract", "test"]
+resolver = "3"
+
+[workspace.dependencies]
+testlib = { path = "../Kontor/core/testlib" }
+stdlib = { path = "../Kontor/core/stdlib" }
+wit-bindgen = { version = "0.45.0" }
+tokio = { version = "1", features = ["full"] }
