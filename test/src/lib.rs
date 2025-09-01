@@ -21,7 +21,7 @@ mod tests {
         )
         .await?;
 
-        let result = hello_world::hello_world(&runtime).await;
+        let result = hello_world::hello_world(&runtime).await?;
         assert_eq!(result, "Hello, World!");
 
         Ok(())
