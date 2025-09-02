@@ -1,6 +1,6 @@
-use std::{fs, path::PathBuf, process::Command};
+use std::{fs, path::Path, process::Command};
 
-fn find_first_file_with_extension(dir: &PathBuf, extension: &str) -> Option<String> {
+fn find_first_file_with_extension(dir: &Path, extension: &str) -> Option<String> {
     let ext = extension.trim_start_matches('.').to_lowercase();
 
     for entry in fs::read_dir(dir).unwrap() {
