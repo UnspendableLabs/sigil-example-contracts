@@ -895,14 +895,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e47641d3deaf41fb1538ac1f54735925e275eaf3bf4d55c81b137fba797e5cbb"
 
 [[package]]
-name = "contract"
-version = "0.1.0"
-dependencies = [
- "stdlib",
- "wit-bindgen",
-]
-
-[[package]]
 name = "cookie"
 version = "0.18.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1706,6 +1698,23 @@ name = "heck"
 version = "0.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2304e00983f87ffb38b55b444b5e3b60a884b5d30c0fca7d82fe33449bbe55ea"
+
+[[package]]
+name = "hello-world"
+version = "0.1.0"
+dependencies = [
+ "stdlib",
+ "wit-bindgen",
+]
+
+[[package]]
+name = "hello-world-test"
+version = "0.1.0"
+dependencies = [
+ "stdlib",
+ "testlib",
+ "tokio",
+]
 
 [[package]]
 name = "hermit-abi"
@@ -3882,15 +3891,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "06794f8f6c5c898b3275aebefa6b8a1cb24cd2c6c79397ab15774837a0bc5755"
 dependencies = [
  "winapi-util",
-]
-
-[[package]]
-name = "test"
-version = "0.1.0"
-dependencies = [
- "stdlib",
- "testlib",
- "tokio",
 ]
 
 [[package]]
