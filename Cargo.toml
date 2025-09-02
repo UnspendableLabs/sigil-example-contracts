@@ -2,6 +2,13 @@
 members = ["contract", "test"]
 resolver = "3"
 
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+strip = true
+panic = "abort"
+
 [workspace.dependencies]
 testlib = { path = "../Kontor/core/testlib" }
 stdlib = { path = "../Kontor/core/stdlib" }
