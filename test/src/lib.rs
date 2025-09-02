@@ -2,8 +2,6 @@
 mod tests {
     use testlib::*;
 
-    const WASM_BYTES: &[u8] = include_bytes!(env!("CONTRACT_WASM_PATH"));
-
     import!(
         name = "hello-world",
         height = 0,
@@ -16,7 +14,7 @@ mod tests {
     async fn test_contract() -> Result<()> {
         let runtime = Runtime::new(
             RuntimeConfig::builder()
-                .contracts(&[("hello-world", WASM_BYTES)])
+                .contracts(&[("hello-world", &contract_bytes().await?)])
                 .build(),
         )
         .await?;

@@ -3899,9 +3899,11 @@ version = "0.1.0"
 dependencies = [
  "anyhow",
  "bon",
+ "glob",
  "indexer",
  "libsql",
  "stdlib",
+ "tokio",
 ]
 
 [[package]]
