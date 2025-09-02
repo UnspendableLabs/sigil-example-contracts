@@ -1,14 +1,30 @@
-use std::path::Path;
-use std::process::Command;
+use std::{fs, path::PathBuf, process::Command};
+
+fn find_first_file_with_extension(dir: &PathBuf, extension: &str) -> Option<String> {
+    let ext = extension.trim_start_matches('.').to_lowercase();
+
+    for entry in fs::read_dir(dir).unwrap() {
+        let entry = entry.unwrap();
+        let path = entry.path();
+
+        if path.is_file()
+            && let Some(file_ext) = path.extension()
+            && file_ext.to_string_lossy().to_lowercase() == ext
+        {
+            return path.file_stem().map(|s| s.to_string_lossy().into_owned());
+        }
+    }
+
+    None
+}
 
 fn main() {
-    let contract_dir = "../contract"; // Path to contract crate
-    let built_wasm = "../target/wasm32-unknown-unknown/release";
-    let dest_wasm = Path::new(&built_wasm).join("contract.wasm");
-    let dest_opt_wasm = Path::new(&built_wasm).join("contract_opt.wasm");
-    let dest_brotli = Path::new(&built_wasm).join("contract.wasm.br");
+    let mut cd = std::env::current_dir().unwrap();
+    cd.pop();
+    let contract_dir = cd.join("contract");
+    let built_wasm = cd.join("target/wasm32-unknown-unknown/release");
 
-    println!("cargo:rerun-if-changed={}", contract_dir);
+    println!("cargo:rerun-if-changed={}", contract_dir.display());
 
     let status = Command::new("cargo")
         .args([
@@ -16,7 +32,7 @@ fn main() {
             "--target",
             "wasm32-unknown-unknown",
             "--manifest-path",
-            &format!("{}/Cargo.toml", contract_dir),
+            &format!("{}/Cargo.toml", contract_dir.display()),
             "--release",
         ])
         .status()
@@ -25,6 +41,11 @@ fn main() {
     if !status.success() {
         panic!("Failed to build contract to WASM");
     }
+
+    let file_stem = find_first_file_with_extension(&built_wasm, ".wasm").unwrap();
+    let dest_wasm = built_wasm.join(format!("{}.wasm", file_stem));
+    let dest_opt_wasm = built_wasm.join(format!("{}_opt.wasm", file_stem));
+    let dest_brotli = built_wasm.join(format!("{}.wasm.br", file_stem));
 
     if !Command::new("wasm-opt")
         .args([
@@ -54,7 +75,7 @@ fn main() {
     }
 
     println!(
-        "cargo:rustc-env=CONTRACT_WASM_PATH=../{}",
+        "cargo:rustc-env=CONTRACT_WASM_PATH={}",
         dest_brotli.display()
     );
 }
