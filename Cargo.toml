@@ -12,5 +12,6 @@ panic = "abort"
 [workspace.dependencies]
 testlib = { path = "../Kontor/core/testlib" }
 stdlib = { path = "../Kontor/core/stdlib" }
-wit-bindgen = { version = "0.45.0" }
+
+wit-bindgen = { version = "=0.45.1" }
 tokio = { version = "1", features = ["full"] }
