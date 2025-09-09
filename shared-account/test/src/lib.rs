@@ -35,12 +35,10 @@ mod tests {
         let claire = "claire";
         let dara = "dara";
 
-        eprintln!("before");
         token::mint(&runtime, alice, 100.into()).await?;
 
         let account_id =
             shared_account::open(&runtime, alice, 50.into(), vec![bob, dara]).await??;
-        eprintln!("after");
 
         let result = shared_account::balance(&runtime, &account_id).await?;
         assert_eq!(result, Some(50.into()));
