@@ -1,9 +1,0 @@
-[package]
-name = "shared-account-proxied-test"
-version = "0.1.0"
-edition = "2024"
-
-[dependencies]
-testlib = { workspace = true }
-stdlib = { workspace = true }
-tokio = { workspace = true }
