@@ -4149,7 +4149,7 @@ dependencies = [
  "glob",
  "indexer",
  "libsql",
- "stdlib",
+ "macros",
  "tokio",
 ]
 

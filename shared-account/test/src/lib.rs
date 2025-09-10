@@ -7,7 +7,6 @@ mod tests {
         height = 0,
         tx_index = 0,
         path = "contract/wit",
-        test = true,
     );
 
     import!(
@@ -15,7 +14,6 @@ mod tests {
         height = 0,
         tx_index = 0,
         path = "../token/contract/wit",
-        test = true,
     );
 
     #[tokio::test]
