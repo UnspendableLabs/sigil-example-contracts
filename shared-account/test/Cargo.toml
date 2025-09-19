@@ -3,6 +3,9 @@ name = "shared-account-test"
 version = "0.1.0"
 edition = "2024"
 
+[lib]
+doctest = false
+
 [dependencies]
 testlib = { workspace = true }
 stdlib = { workspace = true }
