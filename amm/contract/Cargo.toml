@@ -1,0 +1,17 @@
+[package]
+name = "amm"
+version = "0.1.0"
+edition = "2024"
+
+[lints.clippy]
+new_without_default = "allow"
+uninlined_format_args = "allow"
+too_many_arguments = "allow"
+
+[dependencies]
+wit-bindgen = { workspace = true }
+stdlib = { workspace = true }
+
+[lib]
+crate-type = ["cdylib"]
+test = false

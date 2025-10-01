@@ -1,0 +1,42 @@
+package kontor:contract;
+
+world contract {
+    include kontor:built-in/built-in;
+    use kontor:built-in/context.{view-context, proc-context, signer};
+    use kontor:built-in/error.{error};
+    use kontor:built-in/foreign.{contract-address};
+    use kontor:built-in/numbers.{integer, decimal};
+
+  	record token-pair {
+  		a: contract-address,
+  		b: contract-address,
+  	}
+
+  	record deposit-result {
+  		lp-shares: integer,
+  		deposit-a: integer,
+  		deposit-b: integer,
+  	}
+
+  	record withdraw-result {
+  		amount-a: integer,
+  		amount-b: integer,
+  	}
+
+    export init: func(ctx: borrow<proc-context>);
+
+    export create: func(ctx: borrow<proc-context>, pair: token-pair, amount-a: integer, amount-b: integer, fee-bps: integer) -> result<integer, error>;
+
+  	export fee: func(ctx: borrow<view-context>, pair: token-pair) -> result<integer, error>;
+
+    export balance: func(ctx: borrow<view-context>, pair: token-pair, acc: string) -> option<integer>;
+    export token-balance: func(ctx: borrow<view-context>, pair: token-pair, token: contract-address) -> result<integer, error>;
+    export quote-deposit: func(ctx: borrow<view-context>, pair: token-pair, amount-a: integer, amount-b: integer) -> result<deposit-result, error>;
+    export deposit: func(ctx: borrow<proc-context>, pair: token-pair, amount-a: integer, amount-b: integer) -> result<deposit-result, error>;
+    export quote-withdraw: func(ctx: borrow<view-context>, pair: token-pair, shares: integer) -> result<withdraw-result, error>;
+    export withdraw: func(ctx: borrow<proc-context>, pair: token-pair, shares: integer) -> result<withdraw-result, error>;
+
+
+    export swap: func(ctx: borrow<proc-context>, pair: token-pair, token-in: contract-address, amount-in: integer, min-out: integer) -> result<integer, error>;
+    export quote-swap: func(ctx: borrow<view-context>, pair: token-pair, token-in: contract-address, amount-in: integer) -> result<integer, error>;
+}

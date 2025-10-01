@@ -80,6 +80,24 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "683d7910e743518b0e34f1186f92494becacb047c7b6bf616c96772180fef923"
 
 [[package]]
+name = "amm"
+version = "0.1.0"
+dependencies = [
+ "stdlib",
+ "wit-bindgen 0.46.0",
+]
+
+[[package]]
+name = "amm-test"
+version = "0.1.0"
+dependencies = [
+ "stdlib",
+ "testlib",
+ "token-test",
+ "tokio",
+]
+
+[[package]]
 name = "android-tzdata"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3136,25 +3154,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "proxy"
-version = "0.1.0"
-dependencies = [
- "stdlib",
- "wit-bindgen 0.46.0",
-]
-
-[[package]]
-name = "proxy-test"
-version = "0.1.0"
-dependencies = [
- "shared-account-dynamic-test",
- "stdlib",
- "testlib",
- "token-test",
- "tokio",
-]
-
-[[package]]
 name = "pulley-interpreter"
 version = "37.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3918,16 +3917,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f40ca3c46823713e0d4209592e8d6e826aa57e928f09752619fc696c499637f6"
 dependencies = [
  "lazy_static",
-]
-
-[[package]]
-name = "shared-account-dynamic-test"
-version = "0.1.0"
-dependencies = [
- "stdlib",
- "testlib",
- "token-test",
- "tokio",
 ]
 
 [[package]]
